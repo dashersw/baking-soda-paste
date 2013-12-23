@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Baking soda paste – The definitive solvent for disgusting rubber-band scrolling on iOS.</title>
+
+    <!-- Allow full screen operation when added to home screen. -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <!--
+        Use translucent status bar. This makes the document height equal to the device height so we'll have to consider
+        a 20px padding. If you don't like giving a default padding, you can change this setting to black. Make sure
+        this is set to black or black-translucent. "default" causes totally blacked out statusbar in iOS 7.
+    -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!--
+        Since this is an app, we don't want scaling. Setting width=device-width makes it look like an app. This will
+        report a width of 320 for iPhone, so your designs can't use one-pixel-wide lines.
+
+        If you want the full retina resolution, you should set the initial-scale property to 0.5. Then you will have to
+        make up for the scale by doubling the pixel values in CSS.
+    -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, width=device-width" />
+
+    <!--
+        A weird iOS bug prevents web apps going full screen when added to home screen. Removing device-width somehow
+        solves this issue.
+    -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1" media="(device-height: 568px)" />
+    <style>
+        html, body {
+            height: 100%;
+            font-size: 16px;
+            padding: 0;
+            margin: 0;
+            font-family: Helvetica Neue, Helvetica, Arial;
+            font-weight: 300;
+
+            /* The magic ingredients */
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        header, footer {
+            position: absolute;
+            height: 60px;
+            width: 100%;
+            background: #48f;
+            color: white;
+            line-height: 60px;
+            text-align: center;
+            font-weight: 300;
+            box-sizing: border-box;
+        }
+
+        header {
+            top: 0;
+        }
+
+        footer {
+            bottom: 0;
+        }
+
+        #content {
+            position: absolute;
+            width: 100%;
+            top: 60px;
+            bottom: 60px;
+            padding: 20px;
+            box-sizing: border-box;
+
+            /* The magic ingredients */
+            overflow-y: scroll;
+        }
+
+        h1 {
+            font-weight: 200;
+        }
+
+        /************
+
+        Styles for hiding the address bar in iOS 6.
+
+         ************/
+
+        /*
+            Give the body a default padding that equals the address bar in height so that we can make it disappear.
+         */
+        body.ios6.no-standalone {
+            padding-bottom: 60px;
+        }
+
+        /*
+            Since we're using translucent status bar, the standalone mode has to make up for the height of the
+            status bar.
+         */
+        .standalone header {
+            padding-top: 20px;
+            height: 80px;
+        }
+
+        /*
+            Again, make up for translucent status bar height.
+         */
+        .standalone #content {
+            top: 80px;
+        }
+
+        /*
+            Since we're hiding the address bar by increasing its height, we have to make up for the empty space at the
+            bottom. Therefore we're pushing the footer further down.
+         */
+        .ios6.no-standalone footer {
+            bottom: -60px;
+        }
+
+        /*
+            Again, to compensate the empty space caused by the address bar's absence, we have to push the content
+            further down.
+         */
+        .ios6.no-standalone #content {
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<header>Some header</header>
+<div id="content">
+    <h1>Content</h1>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mattis ante eu nibh tempor vehicula. Donec a ipsum nunc. Vivamus cursus sit amet nisi in rhoncus. Donec eget lectus vel magna tincidunt placerat. Mauris dolor magna, adipiscing ac vehicula eget, feugiat sit amet turpis. Donec pretium justo eu laoreet ullamcorper. Aliquam eget nisi non nunc mollis faucibus. Nullam pretium posuere magna, id tristique nisi sollicitudin a. Sed sollicitudin libero nec magna varius, ac congue elit aliquet. Praesent rhoncus faucibus justo, nec pellentesque est aliquet quis. Donec molestie porttitor commodo. Aenean varius diam nec purus viverra lobortis. Nunc ullamcorper porta leo non blandit.   Etiam at sem ac turpis posuere rutrum rutrum vel augue. Phasellus porta purus lacus, eu iaculis arcu fringilla ut. Nam fermentum pharetra porta. Ut sed condimentum nisl, ut rutrum felis. Nam non ipsum malesuada purus tristique mollis. Vestibulum non mauris in quam volutpat consectetur nec a quam. Donec urna felis, aliquam ut turpis a, porta hendrerit leo. In euismod mi eget bibendum vehicula. Praesent ullamcorper posuere nunc, vitae posuere metus malesuada eget. Aliquam pulvinar purus id euismod facilisis. Vestibulum sit amet sapien congue turpis euismod ultricies nec et magna. Suspendisse sagittis nisl et ullamcorper dignissim. Etiam non volutpat orci.Donec egestas sit amet urna et faucibus. Nam tincidunt feugiat lorem eget cursus. Aenean ultrices nibh in tellus accumsan, vel mattis quam semper. Nullam scelerisque lorem at leo ultrices, in interdum ante viverra. Etiam facilisis tristique sem, id volutpat leo rutrum hendrerit. Aenean erat tortor, vehicula nec varius vel, dictum id neque. Mauris justo leo, scelerisque quis interdum id, fermentum vitae libero. Donec eu dui pharetra, convallis eros ultricies, tempor nulla. Morbi vel nunc imperdiet, sollicitudin tellus quis, ultrices orci. Proin sit amet tempor ligula, sed lobortis dui. Morbi auctor felis leo, non tincidunt felis lacinia et.        Nunc mollis urna eu turpis tempor, nec ullamcorper dolor gravida. Cras eu urna eget enim suscipit ultrices ac ac odio. Vestibulum lectus lectus, blandit eget tempor at, pulvinar quis eros. Cras in iaculis risus, ut iaculis ligula. Vestibulum eget felis felis. Vestibulum ullamcorper tristique justo eget dignissim. Aenean pharetra nunc arcu, a ultricies diam iaculis in. Vivamus vehicula accumsan sollicitudin. Nunc quis accumsan nunc. Cras sit amet scelerisque mauris. Integer tincidunt, lectus in rutrum malesuada, diam tortor aliquet nisi, at dapibus sem tortor et orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean in vestibulum tellus. Phasellus sit amet imperdiet risus.        Morbi sit amet tortor at nulla venenatis malesuada eu vel libero. Praesent adipiscing in magna sed tincidunt. Pellentesque malesuada et urna ac egestas. Curabitur porttitor tortor metus, non scelerisque mauris facilisis et. Aenean vulputate, justo vel laoreet suscipit, est enim imperdiet nisl, sed pharetra leo justo a nulla. Donec pharetra sit amet augue ac sagittis. Suspendisse euismod tellus justo, non fringilla nibh condimentum vehicula. Phasellus vulputate tempus egestas. Proin porttitor congue felis vitae malesuada. Nunc sed sem nulla. Nunc eget odio suscipit, bibendum elit non, feugiat tortor.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mattis ante eu nibh tempor vehicula. Donec a ipsum nunc. Vivamus cursus sit amet nisi in rhoncus. Donec eget lectus vel magna tincidunt placerat. Mauris dolor magna, adipiscing ac vehicula eget, feugiat sit amet turpis. Donec pretium justo eu laoreet ullamcorper. Aliquam eget nisi non nunc mollis faucibus. Nullam pretium posuere magna, id tristique nisi sollicitudin a. Sed sollicitudin libero nec magna varius, ac congue elit aliquet. Praesent rhoncus faucibus justo, nec pellentesque est aliquet quis. Donec molestie porttitor commodo. Aenean varius diam nec purus viverra lobortis. Nunc ullamcorper porta leo non blandit.   Etiam at sem ac turpis posuere rutrum rutrum vel augue. Phasellus porta purus lacus, eu iaculis arcu fringilla ut. Nam fermentum pharetra porta. Ut sed condimentum nisl, ut rutrum felis. Nam non ipsum malesuada purus tristique mollis. Vestibulum non mauris in quam volutpat consectetur nec a quam. Donec urna felis, aliquam ut turpis a, porta hendrerit leo. In euismod mi eget bibendum vehicula. Praesent ullamcorper posuere nunc, vitae posuere metus malesuada eget. Aliquam pulvinar purus id euismod facilisis. Vestibulum sit amet sapien congue turpis euismod ultricies nec et magna. Suspendisse sagittis nisl et ullamcorper dignissim. Etiam non volutpat orci.Donec egestas sit amet urna et faucibus. Nam tincidunt feugiat lorem eget cursus. Aenean ultrices nibh in tellus accumsan, vel mattis quam semper. Nullam scelerisque lorem at leo ultrices, in interdum ante viverra. Etiam facilisis tristique sem, id volutpat leo rutrum hendrerit. Aenean erat tortor, vehicula nec varius vel, dictum id neque. Mauris justo leo, scelerisque quis interdum id, fermentum vitae libero. Donec eu dui pharetra, convallis eros ultricies, tempor nulla. Morbi vel nunc imperdiet, sollicitudin tellus quis, ultrices orci. Proin sit amet tempor ligula, sed lobortis dui. Morbi auctor felis leo, non tincidunt felis lacinia et.        Nunc mollis urna eu turpis tempor, nec ullamcorper dolor gravida. Cras eu urna eget enim suscipit ultrices ac ac odio. Vestibulum lectus lectus, blandit eget tempor at, pulvinar quis eros. Cras in iaculis risus, ut iaculis ligula. Vestibulum eget felis felis. Vestibulum ullamcorper tristique justo eget dignissim. Aenean pharetra nunc arcu, a ultricies diam iaculis in. Vivamus vehicula accumsan sollicitudin. Nunc quis accumsan nunc. Cras sit amet scelerisque mauris. Integer tincidunt, lectus in rutrum malesuada, diam tortor aliquet nisi, at dapibus sem tortor et orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean in vestibulum tellus. Phasellus sit amet imperdiet risus.        Morbi sit amet tortor at nulla venenatis malesuada eu vel libero. Praesent adipiscing in magna sed tincidunt. Pellentesque malesuada et urna ac egestas. Curabitur porttitor tortor metus, non scelerisque mauris facilisis et. Aenean vulputate, justo vel laoreet suscipit, est enim imperdiet nisl, sed pharetra leo justo a nulla. Donec pharetra sit amet augue ac sagittis. Suspendisse euismod tellus justo, non fringilla nibh condimentum vehicula. Phasellus vulputate tempus egestas. Proin porttitor congue felis vitae malesuada. Nunc sed sem nulla. Nunc eget odio suscipit, bibendum elit non, feugiat tortor.
+</div>
+<footer>Some footer</footer>
+
+<script type="text/javascript">
+    /*
+        We can prevent rubber-band scrolling on overflowing elements with CSS. But a user can still cause rubber-band
+        scrolling on the rest of the elements. Therefore we have to make sure that if an element is not overflowing, we
+        don't want touchmove events on it to cause rubber-banding, therefore we stop the event when it reaches the body.
+     */
+    document.body.addEventListener('touchstart', function() {
+
+        /*
+            For every touchstart, register a touchmove handler that will be called only once for that touch sequence.
+            This is sufficient because once you prevent the first touchmove event, the next one will not trigger a
+            scroll.
+         */
+        document.body.addEventListener('touchmove', function moveListener(e) {
+
+            // Remove the listener for consequent touchmove events.
+            document.body.removeEventListener('touchmove', moveListener);
+
+            var el = e.target;
+
+            do {
+                // If an element is already overflowing, let the event pass through to trigger a scroll.
+                if (parseInt(window.getComputedStyle(el, null).height, 10) < el.scrollHeight)
+                    return;
+            }
+            /*
+                If the element is not overflowing, maybe its parent is! So traverse up the DOM tree to find an
+                overflowing element. We need to stop when we reach the body, though. Otherwise, iOS 6 will trigger a
+                rubber-band scroll.
+             */
+            while (el != document.body && el.parentElement != document.body && (el = el.parentElement));
+
+            e.preventDefault();
+        });
+    });
+
+
+    // Add classes for standalone mode. These help with compensating the translucent status bar.
+    var standaloneClass = navigator.standalone ? 'standalone' : 'no-standalone';
+    document.body.classList.add(standaloneClass);
+
+    /*
+        Hide the address bar by scrolling the body into view.
+     */
+    if (navigator.userAgent.indexOf('iPhone OS 6') > -1) {
+        document.body.classList.add('ios6');
+        document.body.scrollIntoView();
+    }
+</script>
+</body>
+</html>
