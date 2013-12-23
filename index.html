@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Baking Soda Paste by dashersw</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Baking Soda Paste</h1>
+        <h2>The definitive solvent for disgusting rubber-band scrolling on iOS.</h2>
+        <a href="https://github.com/dashersw/baking-soda-paste" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="baking-soda-paste" class="anchor" href="#baking-soda-paste"><span class="octicon octicon-link"></span></a>Baking Soda Paste</h1>
+
+<p>Baking soda paste is one of the best practices when it comes to dealing with rubber stains or, well, rubber-band scrolling on iOS. This is an in-depth guide to defeat the bad habits of iOS and let your web app vibe more like a native app.</p>
+
+<p><strong>Before we begin, you might want to check out a <a href="http://dashersw.github.io/baking-soda-paste/simple.html">simple example</a> with the baking soda paste technique in the works, or a <a href="http://dashersw.github.io/baking-soda-paste/complex.html">more complex example</a> with an app-like layout.</strong> Make sure you open the examples in your iOS device.</p>
+
+<h2>
+<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h2>
+
+<p>This little technique lets you deal with the disgusting rubber-band scrolling on iOS devices. With Baking Soda Paste technique, web applications look more like applications than web sites. As an added bonus, the technique hides the address bar in iOS 6, leaving the precious space for the app. A third fix is for web apps in iPhone 5. Due to unknown reasons, by default they appear with black bars on top and bottom.</p>
+
+<p>So, baking soda paste solves 3 problems;</p>
+
+<ol>
+<li>Rubber-band scrolling in iOS Safari.</li>
+<li>Hiding address bar.</li>
+<li>Black bars in full screen web apps.</li>
+</ol><p>Another nifty bonus is inertial scroll everywhere. You know, Safari's scrolling is not like its counterpart in native apps. It's made for improving <em>reading</em> experience, some claim. But I find it restrictive. With baking soda paste technique, you get inertial scroll in your web apps for free, without going on a limb and type <code>-webkit-overflow-scrolling: touch</code> on everything.</p>
+
+<h2>
+<a name="ingredients" class="anchor" href="#ingredients"><span class="octicon octicon-link"></span></a>Ingredients</h2>
+
+<p>Explore <code>simple.html</code> for fixing rubber-band scrolling in basic terms. This is as simple as it gets. With a few CSS rules, you can prevent rubber-band scrolling on  overflowing elements. It doesn't apply to non-overflowing elements, though.</p>
+
+<p>Explore <code>complex.html</code> for the full technique, including all three fixes. You can mix and match any as you like. It includes a header and a footer along with a content area, as seen in many applications.</p>
+
+<p>Explore <code>complex-annotated.html</code> for detailed inline explanation for the full solution. It helps with understanding quirks.</p>
+
+<h2>
+<a name="how-to-apply" class="anchor" href="#how-to-apply"><span class="octicon octicon-link"></span></a>How to apply</h2>
+
+<p>Everybody has a different style when it comes to constructing a web app. Therefore, this technique is as sparse as possible and can be applied in parts to your solution. Just take the simple solution to rubber-banding, or mix and match parts from the annotated source.</p>
+
+<h2>
+<a name="breakdown" class="anchor" href="#breakdown"><span class="octicon octicon-link"></span></a>Breakdown</h2>
+
+<h3>
+<a name="the-beginnings-of-a-web-app" class="anchor" href="#the-beginnings-of-a-web-app"><span class="octicon octicon-link"></span></a>The beginnings of a web app</h3>
+
+<p>The default browser width is 980px in Safari in iPhone. This is to show whole desktop pages in a very tiny fashion, albeit complete, in that screen. It's also zoomable by pinching.</p>
+
+<p>A native app uses the actual device pixels, so should we. And there's no zoom so we should fix that too. In order to achieve this, use the following meta tag.</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"user-scalable=no, initial-scale=1, width=device-width"</span> <span class="nt">/&gt;</span>
+</pre></div>
+
+<p>Now actually, <code>initial-scale=1</code> makes sure there's no initial zoom, <code>user-scalable=no</code> makes sure a user cannot zoom in or out, and <code>width=device-width</code> makes sure we use the actual device pixels.</p>
+
+<p>Well, almost. The retina iPhone has 640 pixels in horizontal but this meta tag makes the browser think it has 320 pixels. So you just can't use 1-pixel-wide design elements. The 1px in your CSS will amount to 2 pixels on screen.</p>
+
+<p>If this is a problem for you (it mostly will be), you can just use a scale value of <code>0.5</code> as in:</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"user-scalable=no, initial-scale=0.5, width=device-width"</span> <span class="nt">/&gt;</span>
+</pre></div>
+
+<p>This makes sure that we really use the whole device pixels, and you can make your designers happy once again by letting them use 1-px-wide elements.</p>
+
+<h3>
+<a name="rubber-banding" class="anchor" href="#rubber-banding"><span class="octicon octicon-link"></span></a>Rubber-banding</h3>
+
+<p>It all began with the disgusting rubber-banding effect. Well the effect is not so disgusting, it's rather cool in fact (with things like pull-to-refresh, etc.), but you just don't want it in your web app.</p>
+
+<p>We'll begin with the rubber-banding effect that are triggered by scrolling past limits in scrolling elements. You know, the ones that have a lot of contents inside. You scroll to the top, and want to scroll further (like when you want to see a pull-to-refresh icon). And when you expect a native app to just scroll the <em>contents</em>, you're pulling the whole viewport! Now that's very bad, but it's actually very easy to prevent rubber-banding in scrolling overflowing elements. An overflowing element is one whose height is smaller than its contents'. It may or may not be scrolling; and although an element doesn't have any scrollbars, it can be an overflowing element.</p>
+
+<p>For example, inline elements take the dimensions of their surroundings. But a block element in an inline element may be bigger than its container. By default, browsers will display the content fully, but the outer inline element is already overflowing, like with the <code>overflow: visible</code> CSS rule. The same idea may be found in hieararchical block elements; when the inner element goes out of its container, it means the container is overflowing. You can scroll it if you apply <code>overflow: scroll</code>.</p>
+
+<p>So, putting the non-scrolling overflowing elements aside for now, the scrolling elements are easily fixed.</p>
+
+<p>You just apply the following rules to <code>html</code> and <code>body</code> tags:</p>
+
+<div class="highlight highlight-css"><pre><span class="nt">html</span><span class="o">,</span> <span class="nt">body</span> <span class="p">{</span>
+    <span class="k">height</span><span class="o">:</span> <span class="m">100</span><span class="o">%</span><span class="p">;</span>
+    <span class="k">overflow-y</span><span class="o">:</span> <span class="k">scroll</span><span class="p">;</span>
+    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="k">overflow</span><span class="o">-</span><span class="n">scrolling</span><span class="o">:</span> <span class="n">touch</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>And these to your scrolling element as in:</p>
+
+<div class="highlight highlight-css"><pre><span class="nf">#content</span> <span class="p">{</span>
+    <span class="k">height</span><span class="o">:</span> <span class="m">100</span><span class="o">%</span><span class="p">;</span>
+    <span class="k">overflow</span><span class="o">:</span> <span class="k">scroll</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Really simple, right? You must have seen other nasty solutions that even try to scroll the element 1px off when you reach an end.</p>
+
+<p>So open up simple.html in your iOS Safari while you enjoy a goodbye toast to rubber-banding. Now let's step back for a moment and try to understand what's going on here.</p>
+
+<p>First, you set the <code>height</code> property to 100% for the <code>body</code> and the <code>html</code>. These assure that the body will fill the screen and will not scroll past beyond it. And any overflowing content will be scrolling <em>inside</em> the body. <code>-webkit-overflow-scrolling</code> is another key factor and serves a double purpose. One, it enables inertial scroll on every element and two, it just provides the rubber-banding fix.</p>
+
+<p>Make sure to have a finite height on the content container as in the example, and just apply <code>overflow-y: scroll</code>. Magic.</p>
+
+<p>Now don't get me wrong, I have definitely no idea why this works. But it really does.</p>
+
+<p>And how about non-scrolling, non-overflowing elements? Well they are a bit more tricky and cannot be dealth with CSS only, therefore they require JavaScript. But more on that later.</p>
+
+<h3>
+<a name="complex-example-application-layout" class="anchor" href="#complex-example-application-layout"><span class="octicon octicon-link"></span></a>Complex example application layout</h3>
+
+<p>The other fixes are demonstrated in the complex example. The example features a header, a content area and a footer as found in many applications, and are fit for such layouts. You can work the fixes out for other layouts as well.</p>
+
+<p>This app layout features a 60px header, a flexible-height content area and a 60px footer.</p>
+
+<h3>
+<a name="hiding-the-address-bar-in-ios-6" class="anchor" href="#hiding-the-address-bar-in-ios-6"><span class="octicon octicon-link"></span></a>Hiding the address bar in iOS 6</h3>
+
+<p>The address bar in iOS 6 is actually more friendly to developers than its cousin in iOS 7. Although iOS 6 is waning in market share, it's still out there along with 3:2 iPhone screens. So that leaves a really small canvas for our apps and that's irritating. So let's get rid of it!</p>
+
+<p>Now the first thing is, we have to make sure that we're in iOS 6 and actually in a browser (and not in standalone mode where the user added the application to home screen via the Add to Home Screen button), since iOS 7 doesn't let you hide the address bar and in standalone mode there's no browser chrome.</p>
+
+<p>Here's a very crude and simple OS version sniffer;</p>
+
+<div class="highlight highlight-js"><pre><span class="k">if</span> <span class="p">(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">'iPhone OS 6'</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">'ios6'</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>If the user is using a version of iOS 6, we just add a class called <code>ios6</code> to the body.</p>
+
+<p>For detecting the standalone status, we use:</p>
+
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">standaloneClass</span> <span class="o">=</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">standalone</span> <span class="o">?</span> <span class="s1">'standalone'</span> <span class="o">:</span> <span class="s1">'no-standalone'</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">standaloneClass</span><span class="p">);</span>
+</pre></div>
+
+<p>Now we have the actual state in CSS. For hiding the address bar, the <code>body</code> should be <code>60px</code> longer than the full viewport in iOS6 Safari. But we had used <code>100%</code> for <code>body</code> <code>height</code> previously! Don't panic. Just use this:</p>
+
+<div class="highlight highlight-css"><pre><span class="nt">body</span><span class="nc">.ios6.no-standalone</span> <span class="p">{</span>
+    <span class="k">padding-bottom</span><span class="o">:</span> <span class="m">60px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>This gives a 60px space at the bottom. Now if the user would scroll down, the address bar would disappear. But we want it to happen automatically as soon as the app loads!</p>
+
+<p>So here's a pretty one-liner to append to anywhere you like.</p>
+
+<div class="highlight highlight-js"><pre><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollIntoView</span><span class="p">();</span>
+</pre></div>
+
+<p>Very cool, huh? Well, that additional <code>60px</code> looks really bad. We have to cover up for it!</p>
+
+<p>Now assuming you have a footer at the absolute (<code>position: absolute</code>) bottom (<code>bottom: 0;</code>), you can do this:</p>
+
+<div class="highlight highlight-css"><pre><span class="nc">.ios6.no-standalone</span> <span class="nt">footer</span> <span class="p">{</span>
+    <span class="k">bottom</span><span class="o">:</span> <span class="m">-60px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>That's more like it. Now there's a gap between the content and the footer! Never mind, just push the content further down:</p>
+
+<div class="highlight highlight-css"><pre><span class="nc">.ios6.no-standalone</span> <span class="nf">#content</span> <span class="p">{</span>
+    <span class="k">bottom</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>That does it. We hid the address bar!</p>
+
+<h3>
+<a name="standalone-mode" class="anchor" href="#standalone-mode"><span class="octicon octicon-link"></span></a>Standalone mode</h3>
+
+<p>Standalone mode is when a user adds your page to the home screen. It's possible to hide the browser chrome there, so that would feel a lot more like a native app.
+First of all, you need to add the following in order to be able to hide Safari chrome in apps added to the home screen. This enables the <code>standalone mode</code>.</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"apple-mobile-web-app-capable"</span> <span class="na">content=</span><span class="s">"yes"</span><span class="nt">&gt;</span>
+</pre></div>
+
+<p>It comes with a few problems, though. First, the status bar is pitch black in iOS 7. Second, there are strange bars on top and bottom, as if you opened an old iOS app that doesn't support 4-inch displays in a 4-inch device. Weird. To get rid of the bars, we have to add a second <code>meta</code> tag.</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"user-scalable=no, initial-scale=1"</span> <span class="na">media=</span><span class="s">"(device-height: 568px)"</span> <span class="nt">/&gt;</span>
+</pre></div>
+
+<p>This tag is only valid for 4-inch devices. The strange thing is, you have to remove <code>width=device-width</code> this time!</p>
+
+<p>Now, for the status bar. For consistency between iOS 6 and 7, we prefer to have a <code>black-translucent</code> status bar in standalone mode:</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"apple-mobile-web-app-status-bar-style"</span> <span class="na">content=</span><span class="s">"black-translucent"</span><span class="nt">&gt;</span>
+</pre></div>
+
+<p>Having any value other than <code>default</code> fixes the black status bar issue, but again, for consistency, let's stick with <code>black-translucent</code>.</p>
+
+<p>It lets you use the whole display as a canvas, just like in iOS 7. So your actual content goes beneath the status bar and is visible there. For that reason, we need to leave a space for the status bar. Since its height is 20px, we just make the header taller and push the content further down.</p>
+
+<div class="highlight highlight-css"><pre><span class="nc">.standalone</span> <span class="nt">header</span> <span class="p">{</span>
+    <span class="k">padding-top</span><span class="o">:</span> <span class="m">20px</span><span class="p">;</span>
+    <span class="k">height</span><span class="o">:</span> <span class="m">80px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.standalone</span> <span class="nf">#content</span> <span class="p">{</span>
+    <span class="k">top</span><span class="o">:</span> <span class="m">80px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Great!</p>
+
+<h3>
+<a name="rubber-band-scrolling-on-non-scrolling-elements" class="anchor" href="#rubber-band-scrolling-on-non-scrolling-elements"><span class="octicon octicon-link"></span></a>Rubber-band scrolling on non-scrolling elements</h3>
+
+<p>Now, if you want to scroll in a scrolling element, there is no rubber-banding. But you can actually pull down the viewport if you start dragging on a non-scrolling element (like the header or the footer).</p>
+
+<p>Now that's also an imperfection we don't want in our app. So we need to resort to JavaScript for preventing touch moves that happen in those elements. We'll begin by listening <code>touchstart</code> events on the body. Whenever a <code>touchstart</code> occurs, we'll immediately listen for a <code>touchmove</code> event to see if we need to prevent it. Just one <code>touchmove</code> event is enough to determine this, so we'll unlisten the consequent <code>touchmove</code>s for performance reasons.</p>
+
+<p>Now that we have a <code>touchmove</code> event on an element, we need to see if its as tall as its contents, or shorter. If the element is shorter than its contents, it means it should be scrolling, so we shouldn't prevent the event. Keep in mind that our backs are safe with the previous simple solution, i.e., there won't be a rubber-banding effect on scrolling elements.</p>
+
+<p>But if it's not shorter, than we should prevent the <code>touchmove</code> event so that it won't trigger rubber-banding!</p>
+
+<p>Keeping in mind that the DOM is a tree and there can be a lot of elements up that tree starting from the element we caught the event on, we need to traverse up the tree – up to <code>body</code> in fact (since we know that it shouldn't scroll).</p>
+
+<p>That's about the whole story. Here's the code.</p>
+
+<div class="highlight highlight-js"><pre><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'touchstart'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'touchmove'</span><span class="p">,</span> <span class="kd">function</span> <span class="nx">moveListener</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">'touchmove'</span><span class="p">,</span> <span class="nx">moveListener</span><span class="p">);</span>
+
+        <span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+
+        <span class="k">do</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="kc">null</span><span class="p">).</span><span class="nx">height</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">scrollHeight</span><span class="p">)</span>
+                <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nx">el</span> <span class="o">!=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span> <span class="o">&amp;&amp;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">parentElement</span> <span class="o">!=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">el</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">parentElement</span><span class="p">));</span>
+
+        <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
+<p>There's one problem with this approach, though. Sometimes you are just not careful enough, and you have some elements who are shorter than their contents but shouldn't scroll, e.g. elements that act like they have <code>overflow: visible</code>. Now you can check against those elements in the code above, but I discourage it as it will have a performance impact. Plus, it prevents you from being cautious when writing CSS. Just write correct CSS; a container should, almost always, be at least as tall as its children.</p>
+
+<p>Another feature of this approach – I recognize some might say it's a problem – is that it completely disables the address bar. So the user cannot scroll it back down, either to refresh the site or change the URL to navigate away. Or, use the search box for searching for something in your app.</p>
+
+<p>You can enable the address bar by letting the <code>do-while</code> loop reach the <code>body</code>, i.e., by removing the <code>body</code> checks in the <code>while</code> condition. I just have no use for the address bar in an app, so I prefer it this way.</p>
+
+<h2>
+<a name="conclusion" class="anchor" href="#conclusion"><span class="octicon octicon-link"></span></a>Conclusion</h2>
+
+<p>So, that's all about it! With the Baking Soda Paste, you don't have to fear the rubber-banding ever again! Apply it thoroughly, rinse and repeat, and don't forget to ping me back if you like it!</p>
+
+<h2>
+<a name="wait-what-about-android" class="anchor" href="#wait-what-about-android"><span class="octicon octicon-link"></span></a>Wait! What about Android?</h2>
+
+<p>Sorry, I have little experience in the vast realm of browser quirks in Android. Some of the tricks here work for Android too, but I don't have any device or the will to make it work for all Android devices. But your contributions are welcome!</p>
+
+<p><strong>OK, a quick tip about Android though.</strong></p>
+
+<p>If you want to go retina and resort to using <code>0.5</code> for <code>initial-scale</code> property, most Android environments will just show the app on a quarter of the screen. In those cases, just add a spoonful of <code>target-densityDpi=320</code> to the meta tag and the problem will be solved. iOS ignores <code>target-densityDpi</code> setting, so you can just leave it there.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/dashersw/baking-soda-paste/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/dashersw/baking-soda-paste/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/dashersw/baking-soda-paste"></a> is maintained by <a href="https://github.com/dashersw">dashersw</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-34850785-4");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
